@@ -11,10 +11,12 @@ class CheckList extends Component{
     render(){
         let tasks = this.props.tasks.map((task, taskIndex) => (
             <li key={task.id} className="checklist__task" >
+                {console.log(this.props)}
                 <input type="checkbox" defaultChecked={task.done}
                        onChange={this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex )}/>
                 {task.name}{' '}
-                <a href="#" className="checklist__task--remove" onClick={this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}/>
+                <a href="#" className="checklist__task--remove" onClick={
+                                 this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)}/>
             </li>
         ));
         return(
@@ -29,8 +31,8 @@ class CheckList extends Component{
 
 CheckList.propTypes = {
     cardId: PropTypes.number,
-    tasks: PropTypes.arrayOf(PropTypes.object)
-
+    taskCallbacks: PropTypes.object,
+    tasks: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default CheckList;
